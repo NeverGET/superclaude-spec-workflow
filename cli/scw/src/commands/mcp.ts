@@ -18,13 +18,13 @@ export function registerMcpCommand(program: Command): void {
       console.log(chalk.bold.cyan('\n  SCW MCP Server Manager\n'));
       console.log('  Configure and manage MCP servers:\n');
       console.log('  • sequential-thinking - Complex problem decomposition');
-      console.log('  • serena - Session persistence');
-      console.log('  • context7 - Library documentation');
-      console.log('  • tavily - Web research');
+      console.log('  • serena - IDE-like semantic code navigation');
+      console.log('  • context7 - Library documentation (requires API key)');
+      console.log('  • tavily - Web research (requires API key)');
       console.log('  • playwright - Browser automation');
       console.log('  • chrome-devtools - Performance analysis');
-      console.log('  • gemini-wrapper - Gemini delegation');
-      console.log('  • filesystem-morph - Fast file editing');
+      console.log('  • gemini-wrapper - Gemini delegation (2M tokens)');
+      console.log('  • morph-mcp - Fast file editing (requires API key)');
       console.log('');
       mcp.outputHelp();
     });
