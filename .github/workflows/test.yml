@@ -39,16 +39,14 @@ jobs:
       - name: Run tests
         run: npm test --workspaces --if-present
 
-      - name: Verify CLI executables
+      - name: Verify CLI executable
         shell: bash
         run: |
           echo "Testing scw CLI..."
           node cli/scw/dist/index.js --version || echo "Version check (expected to work)"
           node cli/scw/dist/index.js --help
-
-          echo "Testing scw-mcp CLI..."
-          node cli/scw-mcp/dist/index.js --version || echo "Version check (expected to work)"
-          node cli/scw-mcp/dist/index.js --help
+          echo "Testing scw mcp subcommand..."
+          node cli/scw/dist/index.js mcp --help
 
   build-check:
     name: Build verification
@@ -71,6 +69,3 @@ jobs:
         run: |
           echo "=== scw-cli package contents ==="
           cd cli/scw && npm pack --dry-run
-          echo ""
-          echo "=== scw-mcp-cli package contents ==="
-          cd ../scw-mcp && npm pack --dry-run

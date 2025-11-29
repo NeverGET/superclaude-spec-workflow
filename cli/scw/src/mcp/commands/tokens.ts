@@ -1,5 +1,5 @@
 /**
- * scw-mcp tokens - Manage API tokens
+ * scw mcp tokens - Manage API tokens
  */
 
 import inquirer from 'inquirer';
@@ -44,7 +44,7 @@ export async function tokensCommand(options: TokensOptions): Promise<void> {
 
   if (!config) {
     console.log(chalk.yellow('No MCP configuration found.'));
-    console.log('Run ' + chalk.cyan('scw-mcp setup') + ' first.');
+    console.log('Run ' + chalk.cyan('scw mcp setup') + ' first.');
     process.exit(1);
   }
 

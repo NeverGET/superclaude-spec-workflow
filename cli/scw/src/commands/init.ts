@@ -128,7 +128,7 @@ export async function initCommand(options: InitOptions): Promise<void> {
 
     console.log(chalk.green('\n✓ SCW initialized successfully!\n'));
     console.log('Next steps:');
-    console.log(chalk.cyan('  1. Run `scw-mcp setup` to configure MCP servers'));
+    console.log(chalk.cyan('  1. Run `scw mcp setup` to configure MCP servers'));
     console.log(chalk.cyan('  2. Start Claude Code and try `/scw:help`'));
     console.log(chalk.cyan('  3. Use `/scw:brainstorm` to discover requirements\n'));
   } catch (error) {

@@ -17,11 +17,11 @@ SuperClaude Spec Workflow is a comprehensive framework that enhances Claude Code
 ### Option A: Install from npm (Recommended)
 
 ```bash
-# Install CLI tools globally
-npm install -g @neverg3t/scw-cli @neverg3t/scw-mcp-cli
+# Install CLI globally
+npm install -g @neverg3t/scw-cli
 
 # Setup MCP servers
-scw-mcp setup
+scw mcp setup
 
 # Initialize your project
 cd your-project
@@ -38,7 +38,7 @@ npm install
 npm run build --workspaces
 
 # Setup MCP servers
-./cli/scw-mcp/dist/index.js setup
+./cli/scw/dist/index.js mcp setup
 
 # Initialize your project
 cd your-project
@@ -99,10 +99,10 @@ project/
 | `scw init` | Initialize SCW in current project |
 | `scw init --quick` | Quick initialization with defaults |
 | `scw doctor` | Check installation health |
-| `scw-mcp setup` | Configure MCP servers |
-| `scw-mcp check` | Verify servers are running |
-| `scw-mcp list` | List configured servers |
-| `scw-mcp tokens` | Manage API tokens |
+| `scw mcp setup` | Configure MCP servers |
+| `scw mcp check` | Verify servers are running |
+| `scw mcp list` | List configured servers |
+| `scw mcp tokens` | Manage API tokens |
 
 ## Architecture
 

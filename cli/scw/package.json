@@ -1,7 +1,7 @@
 {
   "name": "@neverg3t/scw-cli",
   "version": "1.0.0",
-  "description": "SuperClaude Spec Workflow - Project initialization and setup CLI",
+  "description": "SuperClaude Spec Workflow - Project initialization, setup, and MCP server management CLI",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
@@ -30,7 +30,8 @@
     "cli",
     "gemini",
     "mcp",
-    "spec-workflow"
+    "spec-workflow",
+    "model-context-protocol"
   ],
   "author": "NeverGET",
   "license": "MIT",

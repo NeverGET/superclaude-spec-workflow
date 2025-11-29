@@ -1,5 +1,5 @@
 /**
- * scw-mcp setup - Configure MCP servers
+ * scw mcp setup - Configure MCP servers
  * Interactive setup with token input (plain text, no hiding)
  */
 

@@ -7,6 +7,7 @@
 import { Command } from 'commander';
 import { initCommand } from './commands/init.js';
 import { doctorCommand } from './commands/doctor.js';
+import { registerMcpCommand } from './commands/mcp.js';
 import chalk from 'chalk';
 
 const program = new Command();
@@ -35,6 +36,9 @@ program
     console.log(chalk.yellow('Update command coming soon...'));
     console.log('For now, pull the latest from the repository.');
   });
+
+// Register MCP subcommand
+registerMcpCommand(program);
 
 // Handle unknown commands
 program.on('command:*', () => {

@@ -1,5 +1,5 @@
 /**
- * scw-mcp check - Verify MCP servers are running
+ * scw mcp check - Verify MCP servers are running
  */
 
 import chalk from 'chalk';
@@ -43,7 +43,7 @@ export async function checkCommand(options: CheckOptions): Promise<void> {
 
   if (!config) {
     console.log(chalk.yellow('No MCP configuration found.'));
-    console.log('Run ' + chalk.cyan('scw-mcp setup') + ' to configure servers.');
+    console.log('Run ' + chalk.cyan('scw mcp setup') + ' to configure servers.');
     process.exit(1);
   }
 
@@ -97,7 +97,7 @@ export async function checkCommand(options: CheckOptions): Promise<void> {
   if (failCount > 0) console.log(`  ${chalk.red('✗')} Failed: ${failCount}`);
 
   if (!allPassed) {
-    console.log(chalk.yellow('\nSome servers failed. Run `scw-mcp setup` to reconfigure.'));
+    console.log(chalk.yellow('\nSome servers failed. Run `scw mcp setup` to reconfigure.'));
     process.exit(1);
   }
 

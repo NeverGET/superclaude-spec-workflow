@@ -69,9 +69,6 @@ jobs:
       - name: Publish @neverg3t/scw-cli
         run: npm publish --workspace=cli/scw --access public
 
-      - name: Publish @neverg3t/scw-mcp-cli
-        run: npm publish --workspace=cli/scw-mcp --access public
-
   publish-gpr:
     name: Publish to GitHub Packages
     needs: test
@@ -98,12 +95,6 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: true
 
-      - name: Publish @neverg3t/scw-mcp-cli to GPR
-        run: npm publish --workspace=cli/scw-mcp --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        continue-on-error: true
-
   github-release:
     name: Create GitHub Release
     needs: [publish-npm, publish-gpr]
@@ -121,10 +112,8 @@ jobs:
           npm ci --workspaces
           npm run build --workspaces
 
-      - name: Create tarballs
-        run: |
-          cd cli/scw && npm pack && mv *.tgz ../../
-          cd ../scw-mcp && npm pack && mv *.tgz ../../
+      - name: Create tarball
+        run: cd cli/scw && npm pack && mv *.tgz ../../
 
       - name: Create Release
         uses: softprops/action-gh-release@v1

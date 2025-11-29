@@ -1,5 +1,5 @@
 /**
- * scw-mcp list - List configured MCP servers
+ * scw mcp list - List configured MCP servers
  */
 
 import chalk from 'chalk';
@@ -63,7 +63,7 @@ export async function listCommand(): Promise<void> {
   console.log(chalk.dim(`Configured: ${configuredCount}/${MCP_SERVERS.length} servers`));
 
   if (configuredCount < MCP_SERVERS.length) {
-    console.log(chalk.dim('Run `scw-mcp setup` to configure more servers'));
+    console.log(chalk.dim('Run `scw mcp setup` to configure more servers'));
   }
 
   console.log('');
