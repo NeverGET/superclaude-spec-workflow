@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "MCP server configuration for Gemini Wrapper",
+  "mcpServers": {
+    "gemini-wrapper": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@superclaude/gemini-wrapper"
+      ],
+      "env": {
+        "SCW_SESSION_DIR": "${HOME}/.claude/sessions"
+      }
+    }
+  },
+  "localDevelopment": {
+    "gemini-wrapper": {
+      "command": "node",
+      "args": [
+        "${PROJECT_ROOT}/mcp/gemini-wrapper/dist/index.js"
+      ],
+      "env": {
+        "SCW_SESSION_DIR": "${PROJECT_ROOT}/.claude/sessions"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "gemini_research",
+      "description": "Delegate web research to Gemini (2M token context)",
+      "delegationTriggers": [
+        "deep_research",
+        "multiple_sources",
+        "documentation_analysis"
+      ]
+    },
+    {
+      "name": "gemini_file_scan",
+      "description": "Scan large directories (>10 files) with Gemini",
+      "delegationTriggers": [
+        "file_count_gt_10",
+        "codebase_exploration"
+      ]
+    },
+    {
+      "name": "gemini_generate",
+      "description": "Generate multiple files (>5) with Gemini",
+      "delegationTriggers": [
+        "file_generation_gt_5",
+        "scaffolding"
+      ]
+    },
+    {
+      "name": "gemini_dialogue",
+      "description": "Multi-model brainstorming with Gemini perspective",
+      "delegationTriggers": [
+        "design_discussion",
+        "architecture_review"
+      ]
+    },
+    {
+      "name": "gemini_test",
+      "description": "Bulk test execution and generation",
+      "delegationTriggers": [
+        "test_suite_large",
+        "coverage_analysis"
+      ]
+    },
+    {
+      "name": "gemini_document",
+      "description": "Generate comprehensive documentation",
+      "delegationTriggers": [
+        "documentation_large",
+        "api_documentation"
+      ]
+    },
+    {
+      "name": "gemini_analyze",
+      "description": "Deep codebase analysis",
+      "delegationTriggers": [
+        "architecture_analysis",
+        "security_review",
+        "performance_analysis"
+      ]
+    },
+    {
+      "name": "gemini_continue",
+      "description": "Resume incomplete operations",
+      "delegationTriggers": [
+        "session_continuation"
+      ]
+    }
+  ],
+  "validation": {
+    "alwaysValidate": true,
+    "validationChecks": [
+      "scope_match",
+      "format_compliance",
+      "completeness",
+      "pattern_compliance"
+    ]
+  }
+}

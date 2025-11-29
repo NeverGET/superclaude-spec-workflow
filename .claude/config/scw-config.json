@@ -1,0 +1,225 @@
+{
+  "$schema": "./scw-config.schema.json",
+  "version": "1.0.0",
+  "framework": {
+    "name": "SuperClaude Spec Workflow",
+    "namespace": "/scw:",
+    "description": "Unified spec-driven development with Claude orchestration and Gemini delegation"
+  },
+  "agents": {
+    "core": {
+      "always_active": ["pm-agent", "self-review"],
+      "path": "agents/core/"
+    },
+    "spec_workflow": {
+      "phase_activated": true,
+      "agents": ["requirements-analyst", "system-architect", "quality-engineer"],
+      "path": "agents/spec-workflow/"
+    },
+    "domain": {
+      "task_activated": true,
+      "agents": [
+        "backend-architect",
+        "frontend-architect",
+        "security-engineer",
+        "devops-architect",
+        "performance-engineer",
+        "python-expert"
+      ],
+      "path": "agents/domain/"
+    },
+    "analysis": {
+      "context_triggered": true,
+      "agents": ["root-cause-analyst", "refactoring-expert"],
+      "path": "agents/analysis/"
+    },
+    "research": {
+      "mode_triggered": true,
+      "agents": ["deep-research-agent", "socratic-mentor", "learning-guide"],
+      "path": "agents/research/"
+    },
+    "communication": {
+      "explicit_only": true,
+      "agents": ["technical-writer", "business-panel-experts", "repo-index"],
+      "path": "agents/communication/"
+    }
+  },
+  "modes": {
+    "path": "modes/",
+    "available": [
+      "brainstorming",
+      "research",
+      "token-efficiency",
+      "orchestration",
+      "task-management",
+      "business-panel",
+      "introspection"
+    ],
+    "default": null
+  },
+  "commands": {
+    "path": ".claude/commands/scw/",
+    "primary": [
+      {
+        "name": "spec-create",
+        "description": "Create feature specification with phased approval workflow",
+        "file": "spec-create.md"
+      },
+      {
+        "name": "spec-execute",
+        "description": "Execute spec task with validation",
+        "file": "spec-execute.md"
+      },
+      {
+        "name": "bug-create",
+        "description": "Create bug workflow with analysis",
+        "file": "bug-create.md"
+      }
+    ],
+    "secondary": [
+      {
+        "name": "brainstorm",
+        "description": "Requirements discovery via Socratic dialogue",
+        "file": "brainstorm.md"
+      },
+      {
+        "name": "design",
+        "description": "Architecture design workflow",
+        "file": "design.md"
+      },
+      {
+        "name": "implement",
+        "description": "Implementation helper",
+        "file": "implement.md"
+      },
+      {
+        "name": "test",
+        "description": "Testing workflow",
+        "file": "test.md"
+      },
+      {
+        "name": "research",
+        "description": "Deep research workflow",
+        "file": "research.md"
+      },
+      {
+        "name": "help",
+        "description": "Command reference",
+        "file": "help.md"
+      }
+    ]
+  },
+  "mcp_servers": {
+    "required": ["sequential-thinking", "serena"],
+    "recommended": ["context7", "tavily-remote-mcp"],
+    "optional": ["playwright", "chrome-devtools"],
+    "gemini_wrapper": {
+      "enabled": false,
+      "runtime": "npx",
+      "path": "mcp/gemini-wrapper/",
+      "session_persistence": "redis"
+    }
+  },
+  "gemini_delegation": {
+    "enabled": true,
+    "triggers": {
+      "file_scan_threshold": 10,
+      "file_generation_threshold": 5,
+      "context_overflow_percentage": 80,
+      "deep_research": true,
+      "bulk_test_execution": true
+    },
+    "validation": {
+      "scope_check": true,
+      "format_check": true,
+      "completeness_check": true,
+      "pattern_compliance": true
+    },
+    "tools": [
+      "gemini_research",
+      "gemini_file_scan",
+      "gemini_generate",
+      "gemini_dialogue",
+      "gemini_test",
+      "gemini_document",
+      "gemini_analyze",
+      "gemini_continue"
+    ]
+  },
+  "pm_agent": {
+    "confidence_checker": {
+      "enabled": true,
+      "thresholds": {
+        "proceed": 90,
+        "alternatives": 70,
+        "stop": 0
+      }
+    },
+    "self_check_protocol": {
+      "enabled": true,
+      "checks": [
+        "tests_passing",
+        "requirements_met",
+        "no_assumptions",
+        "evidence_backed"
+      ]
+    },
+    "reflexion_pattern": {
+      "enabled": true,
+      "documentation": {
+        "patterns_path": "docs/patterns/",
+        "mistakes_path": "docs/mistakes/"
+      }
+    }
+  },
+  "spec_workflow": {
+    "phases": [
+      {
+        "name": "requirements",
+        "approval_required": true,
+        "output_file": "requirements.md",
+        "agents": ["requirements-analyst", "socratic-mentor"],
+        "gemini_delegation": false
+      },
+      {
+        "name": "design",
+        "approval_required": true,
+        "output_file": "design.md",
+        "agents": ["system-architect"],
+        "gemini_delegation": "codebase_analysis_large"
+      },
+      {
+        "name": "tasks",
+        "approval_required": true,
+        "output_file": "tasks.md",
+        "agents": ["quality-engineer", "pm-agent"],
+        "gemini_delegation": false
+      },
+      {
+        "name": "implementation",
+        "approval_required": false,
+        "agents": ["task_specific", "pm-agent"],
+        "gemini_delegation": "bulk_generation"
+      }
+    ],
+    "specs_path": ".claude/specs/",
+    "bugs_path": ".claude/bugs/",
+    "steering_path": ".claude/steering/",
+    "templates_path": ".claude/templates/"
+  },
+  "parallel_execution": {
+    "enabled": true,
+    "pattern": "wave_checkpoint_wave",
+    "speedup_factor": 3.5
+  },
+  "token_budget": {
+    "simple": 200,
+    "medium": 1000,
+    "complex": 2500,
+    "confidence_check_investment": {
+      "min": 100,
+      "max": 200,
+      "roi_multiplier": "25-250x"
+    }
+  }
+}

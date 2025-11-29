@@ -1,0 +1,47 @@
+{
+  "name": "@superclaude/gemini-wrapper",
+  "version": "1.0.0",
+  "description": "MCP server for delegating token-heavy operations to Gemini CLI",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc && node dist/index.js",
+    "prepare": "npm run build",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\"",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test --experimental-test-coverage dist/__tests__/**/*.test.js",
+    "test:watch": "node --test --watch dist/__tests__/**/*.test.js",
+    "validate": "npm run typecheck && npm run lint && npm run format:check && npm run build && npm run test"
+  },
+  "keywords": [
+    "mcp",
+    "gemini",
+    "claude",
+    "delegation",
+    "superclaude"
+  ],
+  "author": "SuperClaude Spec Workflow",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "bin": {
+    "gemini-wrapper": "./dist/index.js"
+  }
+}
