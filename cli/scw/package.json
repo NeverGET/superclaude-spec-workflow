@@ -1,15 +1,15 @@
 {
   "name": "@neverg3t/scw-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "SuperClaude Spec Workflow - Project initialization, setup, and MCP server management CLI",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
-    "scw": "./dist/index.js"
+    "scw": "dist/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/NeverGET/superclaude-spec-workflow.git",
+    "url": "git+https://github.com/NeverGET/superclaude-spec-workflow.git",
     "directory": "cli/scw"
   },
   "homepage": "https://github.com/NeverGET/superclaude-spec-workflow#readme",
