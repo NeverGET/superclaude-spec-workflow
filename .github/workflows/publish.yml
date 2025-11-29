@@ -13,6 +13,7 @@ on:
 permissions:
   contents: write
   packages: write
+  id-token: write  # Required for npm trusted publishing (OIDC)
 
 jobs:
   test:
@@ -39,7 +40,7 @@ jobs:
         run: npm test --workspaces --if-present
 
   publish-npm:
-    name: Publish to npm
+    name: Publish to npm (Trusted Publisher)
     needs: test
     runs-on: ubuntu-latest
     steps:
@@ -51,21 +52,25 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           cache: 'npm'
 
+      # Trusted publishing requires npm ≥11.5.1
+      - name: Update npm to latest
+        run: npm install -g npm@latest
+
+      - name: Verify npm version
+        run: npm --version
+
       - name: Install dependencies
         run: npm ci --workspaces
 
       - name: Build packages
         run: npm run build --workspaces
 
+      # No NODE_AUTH_TOKEN needed - OIDC handles authentication
       - name: Publish @neverg3t/scw-cli
         run: npm publish --workspace=cli/scw --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish @neverg3t/scw-mcp-cli
         run: npm publish --workspace=cli/scw-mcp --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   publish-gpr:
     name: Publish to GitHub Packages
