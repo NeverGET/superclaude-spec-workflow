@@ -1,5 +1,5 @@
 {
-  "name": "@superclaude/scw-mcp-cli",
+  "name": "@neverg3t/scw-mcp-cli",
   "version": "1.0.0",
   "description": "SuperClaude Spec Workflow - MCP Server management CLI",
   "type": "module",
@@ -7,12 +7,20 @@
   "bin": {
     "scw-mcp": "./dist/index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NeverGET/superclaude-spec-workflow.git",
+    "directory": "cli/scw-mcp"
+  },
+  "homepage": "https://github.com/NeverGET/superclaude-spec-workflow#readme",
+  "bugs": "https://github.com/NeverGET/superclaude-spec-workflow/issues",
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
     "start": "node dist/index.js",
     "lint": "eslint src --ext .ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "superclaude",
@@ -20,9 +28,11 @@
     "mcp",
     "ai",
     "workflow",
-    "cli"
+    "cli",
+    "gemini",
+    "model-context-protocol"
   ],
-  "author": "SuperClaude Team",
+  "author": "NeverGET",
   "license": "MIT",
   "dependencies": {
     "chalk": "^5.3.0",
@@ -41,5 +51,9 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
 }

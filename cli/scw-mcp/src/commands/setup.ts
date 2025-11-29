@@ -10,6 +10,7 @@ import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { MCP_SERVERS, McpServerConfig, getServerByName } from '../servers/config.js';
 import { testServer } from '../utils/test-server.js';
+import { getGlobalConfigPath } from '../utils/home.js';
 
 interface SetupOptions {
   server?: string;
@@ -30,7 +31,7 @@ export async function setupCommand(options: SetupOptions): Promise<void> {
   // Determine config location
   const cwd = process.cwd();
   const localConfig = join(cwd, '.claude', 'mcp.json');
-  const globalConfig = join(process.env.HOME || '', '.claude', 'mcp.json');
+  const globalConfig = getGlobalConfigPath();
 
   // Check for existing config
   let configPath = localConfig;

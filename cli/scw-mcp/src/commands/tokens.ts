@@ -7,6 +7,7 @@ import chalk from 'chalk';
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import { MCP_SERVERS, getServersRequiringTokens } from '../servers/config.js';
+import { getGlobalConfigPath } from '../utils/home.js';
 
 interface TokensOptions {
   add?: string;
@@ -28,7 +29,7 @@ export async function tokensCommand(options: TokensOptions): Promise<void> {
   // Find config
   const cwd = process.cwd();
   const localConfig = join(cwd, '.claude', 'mcp.json');
-  const globalConfig = join(process.env.HOME || '', '.claude', 'mcp.json');
+  const globalConfig = getGlobalConfigPath();
 
   let config: McpConfig | null = null;
   let configPath = '';

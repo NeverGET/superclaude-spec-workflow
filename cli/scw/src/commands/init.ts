@@ -16,6 +16,11 @@ import { generateSteeringDocs } from '../generators/steering.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+// Cross-platform home directory
+function getHomeDir(): string {
+  return process.env.HOME || process.env.USERPROFILE || '';
+}
+
 // Find framework root (where agents/, modes/, .claude/commands/scw exist)
 function findFrameworkRoot(): string {
   // Check if SCW_FRAMEWORK_PATH is set
@@ -23,11 +28,15 @@ function findFrameworkRoot(): string {
     return process.env.SCW_FRAMEWORK_PATH;
   }
 
+  const homeDir = getHomeDir();
+
   // Try common locations
   const candidates = [
     join(__dirname, '../../../../'), // Relative to cli/scw/dist/commands
-    join(process.env.HOME || '', 'Projects/SuperClaudeSpecWorkflow'),
+    join(homeDir, 'Projects/SuperClaudeSpecWorkflow'),
+    join(homeDir, 'superclaude-spec-workflow'),
     '/usr/local/share/superclaude-spec-workflow',
+    'C:\\Program Files\\superclaude-spec-workflow', // Windows
   ];
 
   for (const candidate of candidates) {

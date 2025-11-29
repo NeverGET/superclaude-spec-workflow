@@ -14,46 +14,38 @@ SuperClaude Spec Workflow is a comprehensive framework that enhances Claude Code
 
 ## Quick Start
 
-### 1. Clone the Repository
+### Option A: Install from npm (Recommended)
 
 ```bash
+# Install CLI tools globally
+npm install -g @neverg3t/scw-cli @neverg3t/scw-mcp-cli
+
+# Setup MCP servers
+scw-mcp setup
+
+# Initialize your project
+cd your-project
+scw init
+```
+
+### Option B: Install from Source
+
+```bash
+# Clone and build
 git clone https://github.com/NeverGET/superclaude-spec-workflow.git
 cd superclaude-spec-workflow
-```
+npm install
+npm run build --workspaces
 
-### 2. Build the CLI Tools
-
-```bash
-# Build scw CLI
-cd cli/scw && npm install && npm run build && cd ../..
-
-# Build scw-mcp CLI
-cd cli/scw-mcp && npm install && npm run build && cd ../..
-```
-
-### 3. Setup MCP Servers
-
-```bash
-# Interactive setup for all 9 MCP servers
+# Setup MCP servers
 ./cli/scw-mcp/dist/index.js setup
 
-# Or check status of configured servers
-./cli/scw-mcp/dist/index.js check
-```
-
-### 4. Initialize Your Project
-
-```bash
+# Initialize your project
 cd your-project
-
-# Full Socratic mode (Claude-style questioning)
-/path/to/SuperClaudeSpecWorkflow/cli/scw/dist/index.js init
-
-# Quick mode (auto-generate everything)
-/path/to/SuperClaudeSpecWorkflow/cli/scw/dist/index.js init --quick
+/path/to/superclaude-spec-workflow/cli/scw/dist/index.js init
 ```
 
-### 5. Start Using SCW
+### Start Using SCW
 
 Open Claude Code in your project and try:
 

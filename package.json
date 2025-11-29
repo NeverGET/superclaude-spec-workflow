@@ -1,0 +1,28 @@
+{
+  "name": "superclaude-spec-workflow",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Unified AI-powered development framework combining Claude Code, SuperClaude agents, and Gemini delegation",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NeverGET/superclaude-spec-workflow.git"
+  },
+  "homepage": "https://github.com/NeverGET/superclaude-spec-workflow#readme",
+  "bugs": "https://github.com/NeverGET/superclaude-spec-workflow/issues",
+  "author": "NeverGET",
+  "license": "MIT",
+  "workspaces": [
+    "cli/scw",
+    "cli/scw-mcp"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "clean": "rm -rf cli/*/dist cli/*/node_modules",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "prepublish:all": "npm run build"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
