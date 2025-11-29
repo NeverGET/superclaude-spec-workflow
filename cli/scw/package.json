@@ -1,6 +1,6 @@
 {
   "name": "@neverg3t/scw-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "SuperClaude Spec Workflow - Project initialization, setup, and MCP server management CLI",
   "type": "module",
   "main": "dist/index.js",
